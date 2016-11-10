@@ -1,0 +1,26 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>INDICADORES</title>
+    <meta charset="UTF-8">
+    <script src="http://www.wiris.net/demo/editor/editor"></script>
+    <script type="text/javascript" src="js/angular.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+    <script>
+     //Barra de edición de WIRIS
+      var editor;
+        window.onload = function () {
+          editor = com.wiris.jsEditor.JsEditor.newInstance({'checkSyntax':'true','language': 'en',
+            'toolbar':'<toolbar removeLinks="true"><removeTab ref="handwritten" /><tab name="main" layout="horizontal"><item ref="+" /><item ref="-" /><item ref="*" /><item ref="/" /><item ref="fraction" /><item ref="superscript" /><item ref="squareRoot" /><item ref="parenthesis" /></tab></toolbar>'});
+                editor.insertInto(document.getElementById('editorContainer')); 
+    }
+    </script>
+  </head>
+
+  <body ng-app="app" ng-controller="MainController as main">
+    <div id="editorContainer"></div>
+    <button ng-click="main.getMathML(editor)">GET MATHML</button>
+  </body>
+</html>
