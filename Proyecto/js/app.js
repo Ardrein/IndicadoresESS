@@ -14,7 +14,9 @@ appMod.controller("MainController",['$http',function($http){
 	instancia.getMathML = function(){
 		instancia.mathMLString = editor.getMathML();
 		console.log(instancia.mathMLString);
-		console.log(instancia.transformarAString(instancia.mathMLString));
+		var a = instancia.transformarAString(instancia.mathMLString);
+		console.log(a);
+		instancia.getNumVariables(a);
 	}
 
 	/*
@@ -49,7 +51,7 @@ appMod.controller("MainController",['$http',function($http){
         	else resultado = nodo.nodeValue;
 
 		}else if( nombreEtiqueta == "mi"){
-			resultado = "$"+nodo.childNodes[0].nodeValue;
+			resultado = nodo.childNodes[0].nodeValue;
 		}else if(nombreEtiqueta == "mn" || nombreEtiqueta == "mo"){
 			resultado = nodo.childNodes[0].nodeValue;
 		}else if(nombreEtiqueta == "mfrac"){
@@ -144,6 +146,20 @@ appMod.controller("MainController",['$http',function($http){
 			resultado = nodo.tagName;
 		}else resultado = "";
 		
+	}
+
+	/*
+	*Funcion para buscar el numero de variables dentro de la cadena extraida de mathml y guardarlas en un arreglo.
+	*/
+	instancia.getNumVariables = function(fcString){
+		//busca los nombres de las variables y si no encuentra retorna un arreglo vacio.
+		//g argumento para que busque dentro de toda la cadena.
+		var variables = (fcString.match(/[a-z|A-Z|ñ|Ñ]+/g ) || []);
+		console.log(variables);
+		console.log(variables.length);
+
+		return variables;
+
 	}
 
 
